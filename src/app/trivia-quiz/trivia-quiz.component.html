@@ -1,0 +1,11 @@
+<div class="container">
+  <h1 class="heading">Trivia Quiz</h1>
+  <div class="categoryContainer">
+    <div *ngFor="let category of categories">
+      <app-category [name]="category.name"></app-category>
+    </div>
+  </div>
+  <div class="beginQuizBtnContainer">
+    <button type="button" class="beginQuizBtn">BEGIN QUIZ</button>
+  </div>
+</div>
