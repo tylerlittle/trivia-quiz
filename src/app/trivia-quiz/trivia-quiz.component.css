@@ -29,3 +29,7 @@
   background-color: white;
   color: teal;
 }
+
+.disabled {
+  opacity: .3;
+}

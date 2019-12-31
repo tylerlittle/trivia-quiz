@@ -5,12 +5,14 @@ import { AppComponent } from './app.component';
 import { TriviaQuizComponent } from './trivia-quiz/trivia-quiz.component';
 import { TriviaQuizService } from './trivia-quiz.service';
 import { CategoryComponent } from './category/category.component';
+import { QuestionComponent } from './question/question.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TriviaQuizComponent,
-    CategoryComponent
+    CategoryComponent,
+    QuestionComponent
   ],
   imports: [
     BrowserModule,

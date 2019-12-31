@@ -9,6 +9,8 @@ import { TriviaQuizService } from '../trivia-quiz.service';
 export class TriviaQuizComponent implements OnInit {
   categories: any = [];
   selectedCategory = '';
+  beginQuiz = false;
+  questions = [];
   constructor(private quizService: TriviaQuizService) { }
 
   ngOnInit() {
@@ -19,6 +21,15 @@ export class TriviaQuizComponent implements OnInit {
 
   setSelectedCategory(categoryName: string) {
     this.selectedCategory = categoryName;
+  }
+
+  onBeginQuiz() {
+    this.beginQuiz = true;
+    const category = this.categories.filter(item => item.name === this.selectedCategory );
+    const categoryId = category[0].id;
+    this.quizService.getQuestionsForCategory(categoryId)
+    .subscribe((response: any) => { this.questions = response.results;
+                                    console.log(this.questions); } );
   }
 
   sortAlphabetically(array: any) {

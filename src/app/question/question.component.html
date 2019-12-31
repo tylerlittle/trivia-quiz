@@ -1,0 +1,9 @@
+<div class="question-container">
+  <div class="question" [innerHTML]="currentQuestion">
+  </div>
+  <div class="answer-container">
+    <div class="answer" [ngClass]="{'correctAnswer': correctAnswer === answer, 'incorrectAnswer': incorrectAnswer === answer}" *ngFor="let answer of answers" (click)="onAnswerClick($event)">{{ answer }}</div>
+  </div>
+
+  <button [hidden]="!answerSubmitted" class="nextBtn" type="button" (click)="onNextBtnClick()">Next</button>
+</div>
