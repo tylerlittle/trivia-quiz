@@ -1,1 +1,1 @@
-<div class='card'>{{ name }}</div>
+<div class='card' [ngClass]="{'selectedCard': selectedCategoryName===name}" (click)="handleClick()">{{ name }}</div>

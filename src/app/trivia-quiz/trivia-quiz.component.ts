@@ -8,12 +8,17 @@ import { TriviaQuizService } from '../trivia-quiz.service';
 })
 export class TriviaQuizComponent implements OnInit {
   categories: any = [];
+  selectedCategory = '';
   constructor(private quizService: TriviaQuizService) { }
 
   ngOnInit() {
     this.quizService.getTriviaCategories()
     .subscribe((response: any) => { this.categories = response.trivia_categories;
                                     this.sortAlphabetically(this.categories); });
+  }
+
+  setSelectedCategory(categoryName: string) {
+    this.selectedCategory = categoryName;
   }
 
   sortAlphabetically(array: any) {
