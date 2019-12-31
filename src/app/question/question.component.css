@@ -26,7 +26,7 @@
   width: 95%;
 }
 
-.nextBtn {
+.button {
   height: 100px;
   width: 300px;
   font-size: 2.2em;
@@ -37,7 +37,7 @@
   margin: 1em auto 1em auto;
 }
 
-.nextBtn:hover {
+.button:hover {
   background-color: white;
   color: teal;
 }

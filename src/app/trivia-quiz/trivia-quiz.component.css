@@ -15,7 +15,7 @@
   margin-top: 30px;
 }
 
-.beginQuizBtn {
+.button {
   height: 100px;
   width: 300px;
   font-size: 2.2em;
@@ -25,11 +25,7 @@
   border-style: solid;
 }
 
-.beginQuizBtn:hover {
+.button:hover {
   background-color: white;
   color: teal;
-}
-
-.disabled {
-  opacity: .3;
 }

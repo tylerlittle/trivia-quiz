@@ -12,7 +12,16 @@ export class TriviaQuizService {
     return this.http.get('https://opentdb.com/api_category.php');
   }
 
-  getQuestionsForCategory(categoryId: number) {
-    return this.http.get(`https://opentdb.com/api.php?amount=10&type=multiple&category=${categoryId}`);
+  getQuestionsForCategory(categoryId: number, difficulty: string, type: string) {
+    let url = `https://opentdb.com/api.php?amount=10&category=${categoryId}`;
+    if (type === 'True/False') {
+      url = `${url}&type=boolean`;
+    } else if (type === 'Multiple') {
+      url = `${url}&type=multiple`;
+    }
+    if (difficulty !== 'Any') {
+      url = `${url}&difficulty=${difficulty.toLowerCase()}`;
+    }
+    return this.http.get(url);
   }
 }

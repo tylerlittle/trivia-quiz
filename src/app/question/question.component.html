@@ -2,8 +2,9 @@
   <div class="question" [innerHTML]="currentQuestion">
   </div>
   <div class="answer-container">
-    <div class="answer" [ngClass]="{'correctAnswer': correctAnswer === answer, 'incorrectAnswer': incorrectAnswer === answer}" *ngFor="let answer of answers" (click)="onAnswerClick($event)">{{ answer }}</div>
+    <div class="answer" *ngFor="let answer of answers" [ngClass]="{'correctAnswer': correctAnswer === answer, 'incorrectAnswer': incorrectAnswer === answer}" (click)="onAnswerClick($event)">{{ answer }}</div>
   </div>
 
-  <button [hidden]="!answerSubmitted" class="nextBtn" type="button" (click)="onNextBtnClick()">Next</button>
+  <button [hidden]="!answerSubmitted" class="button" type="button" (click)="onNextBtnClick()">Next</button>
+  <button [hidden]="!homeBtnEnabled" class="button" type="button" (click)="onHomeBtnClick()">Home</button>
 </div>

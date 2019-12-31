@@ -1,16 +1,42 @@
 <div class="container">
   <h1 class="heading">Trivia Quiz</h1>
-  <ng-container *ngIf="!beginQuiz">
-    <div class="categoryContainer">
-      <div *ngFor="let category of categories">
-        <app-category [name]="category.name" [selectedCategoryName]="selectedCategory" (selectedCategoryEE)="setSelectedCategory($event)"></app-category>
+  <ng-container [ngSwitch]='view'>
+    <ng-container *ngSwitchCase="'categories'">
+      <h2>Choose a category</h2>
+      <div class="categoryContainer">
+        <div *ngFor="let category of categories">
+          <app-card [name]="category.name" [selectedCardName]="selectedCategory" (selectedCardEE)="setSelectedCategory($event)"></app-card>
+        </div>
       </div>
-    </div>
-    <div class="beginQuizBtnContainer">
-      <button type="button" class="beginQuizBtn" [ngClass]="{'disabled': selectedCategory===''}" [disabled]="selectedCategory === ''" (click)="onBeginQuiz()">BEGIN QUIZ</button>
-    </div>
-  </ng-container>
-  <ng-container *ngIf="beginQuiz && questions.length > 0">
-    <app-question [questions]="questions"></app-question>
+      <!-- <div *ngIf="selectedCategory !== ''" class="beginQuizBtnContainer">
+        <button type="button" class="beginQuizBtn" (click)="onBeginQuiz()">BEGIN QUIZ</button>
+      </div> -->
+    </ng-container>
+    <ng-container *ngSwitchCase="'difficulty'">
+      <h2>Choose a difficulty</h2>
+      <div class="categoryContainer">
+        <div *ngFor="let difficulty of difficultyList">
+          <app-card [name]="difficulty" [selectedCardName]="selectedDifficulty" (selectedCardEE)="setSelectedDifficulty($event)"></app-card>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="'type'">
+      <h2>Choose a question type</h2>
+      <div class="categoryContainer">
+        <div *ngFor="let type of typeList">
+          <app-card [name]="type" [selectedCardName]="selectedType" (selectedCardEE)="setSelectedType($event)"></app-card>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngSwitchCase="'quiz-params'">
+      <h3>Category -- {{ selectedCategory }}</h3>
+      <h3>Difficulty -- {{ selectedDifficulty }}</h3>
+      <h3>Question Type -- {{ selectedType }}</h3>
+      <button type="button" class="button" (click)="onBeginQuiz()">Begin Quiz</button>
+      <button type="button" class="button" (click)="returnHome($event)">Home</button>
+    </ng-container>
+    <ng-container *ngSwitchCase="'questions'">
+      <app-question *ngIf='questions.length > 0' [questions]="questions" (resetQuiz)="returnHome($event)"></app-question>
+    </ng-container>
   </ng-container>
 </div>

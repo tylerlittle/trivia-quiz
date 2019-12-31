@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-question',
@@ -14,13 +14,16 @@ export class QuestionComponent implements OnInit {
   correctAnswer = '';
   incorrectAnswer = '';
   answerSubmitted = false;
+  homeBtnEnabled = false;
+  @Output() resetQuiz = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
-    console.log('QUESTIONS', this.questions);
-    this.currentQuestion = this.questions[0].question;
-    this.answers = this.shuffleAnswers(this.getAnswers(this.questions[0]));
+    if (this.questions.length > 0) {
+      this.currentQuestion = this.questions[0].question;
+      this.answers = this.shuffleAnswers(this.getAnswers(this.questions[0]));
+    }
   }
 
   getAnswers(question: any) {
@@ -37,6 +40,8 @@ export class QuestionComponent implements OnInit {
     }
     if (this.questions.length - 1 !== this.currentQuestionIndex) {
       this.answerSubmitted = true;
+    } else {
+      this.homeBtnEnabled = true;
     }
   }
 
@@ -48,6 +53,10 @@ export class QuestionComponent implements OnInit {
     this.correctAnswer = '';
     this.incorrectAnswer = '';
     this.answerSubmitted = false;
+  }
+
+  onHomeBtnClick() {
+    this.resetQuiz.emit(true);
   }
 
   shuffleAnswers(answers: any) {
