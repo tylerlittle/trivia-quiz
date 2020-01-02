@@ -8,6 +8,7 @@ import { TriviaQuizService } from '../trivia-quiz.service';
 })
 export class TriviaQuizComponent implements OnInit {
   view = 'categories';
+  questionQuantity = 10;
   categories: any = [];
   selectedCategory = '';
   questions = [];
@@ -26,6 +27,10 @@ export class TriviaQuizComponent implements OnInit {
 
   setSelectedCategory(categoryName: string) {
     this.selectedCategory = categoryName;
+    this.view = 'question-quantity';
+  }
+
+  setQuestionQuantity() {
     this.view = 'difficulty';
   }
 
@@ -40,12 +45,29 @@ export class TriviaQuizComponent implements OnInit {
   }
 
   onBeginQuiz() {
-    this.view = 'questions';
     const category = this.categories.filter(item => item.name === this.selectedCategory );
     const categoryId = category[0].id;
-    this.quizService.getQuestionsForCategory(categoryId, this.selectedDifficulty, this.selectedType)
-    .subscribe((response: any) => { this.questions = response.results;
-                                    console.log(this.questions); } );
+    this.quizService.getQuestionsForCategory(categoryId, this.questionQuantity, this.selectedDifficulty, this.selectedType)
+    .subscribe((response: any) => {
+      if (response.results.length === 0) {
+        this.view = 'no-questions';
+      } else {
+        this.view = 'questions';
+        this.questions = response.results;
+      }
+    });
+  }
+
+  stepDown() {
+    if (this.questionQuantity > 1) {
+      this.questionQuantity -= 1;
+    }
+  }
+
+  stepUp() {
+    if (this.questionQuantity < 50) {
+      this.questionQuantity += 1;
+    }
   }
 
   sortAlphabetically(array: any) {

@@ -12,6 +12,16 @@
         <button type="button" class="beginQuizBtn" (click)="onBeginQuiz()">BEGIN QUIZ</button>
       </div> -->
     </ng-container>
+    <ng-container *ngSwitchCase="'question-quantity'">
+      <h2>Number of Questions</h2>
+      <div class="number-input">
+        <button type="button" (click)="stepDown()"></button>
+        <input class="quantity" type="number" [(ngModel)]="questionQuantity" name="quantity" min="1" max="50">
+        <button class="plus" type="button" (click)="stepUp()"></button>
+      </div>
+
+      <button type="button" class="button" (click)="setQuestionQuantity()">Next</button>
+    </ng-container>
     <ng-container *ngSwitchCase="'difficulty'">
       <h2>Choose a difficulty</h2>
       <div class="categoryContainer">
@@ -33,6 +43,14 @@
       <h3>Difficulty -- {{ selectedDifficulty }}</h3>
       <h3>Question Type -- {{ selectedType }}</h3>
       <button type="button" class="button" (click)="onBeginQuiz()">Begin Quiz</button>
+      <button type="button" class="button" (click)="returnHome($event)">Home</button>
+    </ng-container>
+    <ng-container *ngSwitchCase="'no-questions'">
+      <h3 class="error">There were not enough questions with the following criteria:</h3>
+      <h4>Category -- {{ selectedCategory }}</h4>
+      <h4>Difficulty -- {{ selectedDifficulty }}</h4>
+      <h4>Question Type -- {{ selectedType }}</h4>
+      <br />
       <button type="button" class="button" (click)="returnHome($event)">Home</button>
     </ng-container>
     <ng-container *ngSwitchCase="'questions'">
