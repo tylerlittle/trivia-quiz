@@ -3,26 +3,27 @@
   flex-direction: column;
   justify-content: center;
   border: solid 1px white;
-  border-radius: 1em;
+  border-radius: 1rem;
 }
 
 .question {
-  font-size: 3em;
-  padding: 1em;
+  font-size: 3rem;
+  padding: 1rem;
 }
 
 .answer-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .answer {
-  font-size: 2em;
-  padding: .5em;
-  margin: .5em;
+  font-size: 2rem;
+  padding: .5rem;
+  margin: .5rem;
   border: solid 1px white;
-  border-radius: 1em;
+  border-radius: 1rem;
   width: 95%;
 }
 
@@ -34,4 +35,29 @@
 .incorrectAnswer {
   background-color: red;
   color: white;
+}
+
+@media only screen and (min-width: 601px) {
+
+  .timer {
+    display: inline-block;
+    width: 50%;
+  }
+
+  .difficulty {
+    display: inline-block;
+    width: 50%;
+    text-align: right;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+
+  .timer {
+    display: block;
+  }
+
+  .difficulty {
+    display: block;
+  }
 }

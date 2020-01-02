@@ -9,14 +9,11 @@
   text-align: center;
   font-size: 1.7em;
   height: 80%;
+  transition: all .25s ease-in-out;
 }
 
 .card:hover {
   background-color: white;
   color: teal;
-}
-
-.selectedCard {
-  background-color: white;
-  color: teal;
+  transform: scale(1.1);
 }

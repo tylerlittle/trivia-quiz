@@ -9,6 +9,7 @@ export class QuestionComponent implements OnInit {
   @Input() questions = [];
   currentQuestion = '';
   currentQuestionIndex = 0;
+  difficulty: string;
   answers = [];
   selectedAnswer = '';
   correctAnswer = '';
@@ -30,6 +31,7 @@ export class QuestionComponent implements OnInit {
 
   ngOnInit() {
     if (this.questions.length > 0) {
+      this.difficulty = this.questions[0].difficulty;
       this.currentQuestion = this.questions[0].question;
       this.answers = this.shuffleAnswers(this.getAnswers(this.questions[0]));
       this.timerInterval = setInterval(() => {
@@ -73,6 +75,7 @@ export class QuestionComponent implements OnInit {
 
   onNextBtnClick() {
     this.currentQuestionIndex += 1;
+    this.difficulty = this.questions[this.currentQuestionIndex].difficulty;
     this.currentQuestion = this.questions[this.currentQuestionIndex].question;
     this.answers = this.shuffleAnswers(this.getAnswers(this.questions[this.currentQuestionIndex]));
     this.selectedAnswer = '';
