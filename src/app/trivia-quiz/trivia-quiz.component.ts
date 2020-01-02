@@ -8,7 +8,7 @@ import { TriviaQuizService } from '../trivia-quiz.service';
 })
 export class TriviaQuizComponent implements OnInit {
   view = 'categories';
-  questionQuantity = 10;
+  questionQuantity = 5;
   categories: any = [];
   selectedCategory = '';
   questions = [];
@@ -16,7 +16,7 @@ export class TriviaQuizComponent implements OnInit {
   difficultyList = ['Any', 'Easy', 'Medium', 'Hard'];
   selectedType = '';
   typeList = ['Any', 'True/False', 'Multiple Choice'];
-
+  quizResults: any;
   constructor(private quizService: TriviaQuizService) { }
 
   ngOnInit() {
@@ -58,6 +58,19 @@ export class TriviaQuizComponent implements OnInit {
     });
   }
 
+  onViewResults(results: any) {
+    this.view = 'results';
+    this.quizResults = results;
+  }
+
+  onReturnHome($event: any) {
+    this.selectedCategory = '';
+    this.selectedDifficulty = '';
+    this.selectedType = '';
+    this.questions = [];
+    this.view = 'categories';
+  }
+
   stepDown() {
     if (this.questionQuantity > 1) {
       this.questionQuantity -= 1;
@@ -76,13 +89,5 @@ export class TriviaQuizComponent implements OnInit {
       const latter = b.name.toUpperCase();
       return (former < latter) ? -1 : (former > latter) ? 1 : 0;
     });
-  }
-
-  returnHome(event: any) {
-    this.selectedCategory = '';
-    this.selectedDifficulty = '';
-    this.selectedType = '';
-    this.questions = [];
-    this.view = 'categories';
   }
 }

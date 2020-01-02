@@ -15,7 +15,12 @@ export class QuestionComponent implements OnInit {
   incorrectAnswer = '';
   answerSubmitted = false;
   homeBtnEnabled = false;
-  @Output() resetQuiz = new EventEmitter();
+  viewResultsEnabled = false;
+  quizResults = {
+    correct: 0,
+    incorrect: 0
+  };
+  @Output() viewResults = new EventEmitter();
 
   constructor() { }
 
@@ -37,11 +42,14 @@ export class QuestionComponent implements OnInit {
     this.correctAnswer = this.questions[this.currentQuestionIndex].correct_answer;
     if (this.questions[this.currentQuestionIndex].correct_answer !== this.selectedAnswer) {
       this.incorrectAnswer = this.selectedAnswer;
+      this.quizResults.incorrect += 1;
+    } else {
+      this.quizResults.correct += 1;
     }
     if (this.questions.length - 1 !== this.currentQuestionIndex) {
       this.answerSubmitted = true;
     } else {
-      this.homeBtnEnabled = true;
+      this.viewResultsEnabled = true;
     }
   }
 
@@ -55,8 +63,8 @@ export class QuestionComponent implements OnInit {
     this.answerSubmitted = false;
   }
 
-  onHomeBtnClick() {
-    this.resetQuiz.emit(true);
+  onViewResults() {
+    this.viewResults.emit(this.quizResults);
   }
 
   shuffleAnswers(answers: any) {

@@ -8,9 +8,6 @@
           <app-card [name]="category.name" [selectedCardName]="selectedCategory" (selectedCardEE)="setSelectedCategory($event)"></app-card>
         </div>
       </div>
-      <!-- <div *ngIf="selectedCategory !== ''" class="beginQuizBtnContainer">
-        <button type="button" class="beginQuizBtn" (click)="onBeginQuiz()">BEGIN QUIZ</button>
-      </div> -->
     </ng-container>
     <ng-container *ngSwitchCase="'question-quantity'">
       <h2>Number of Questions</h2>
@@ -42,8 +39,8 @@
       <h3>Category -- {{ selectedCategory }}</h3>
       <h3>Difficulty -- {{ selectedDifficulty }}</h3>
       <h3>Question Type -- {{ selectedType }}</h3>
-      <button type="button" class="button" (click)="onBeginQuiz()">Begin Quiz</button>
-      <button type="button" class="button" (click)="returnHome($event)">Home</button>
+      <button type="button" class="custom-button" (click)="onBeginQuiz()">Begin Quiz</button>
+      <button type="button" class="custom-button" (click)="onReturnHome($event)">Home</button>
     </ng-container>
     <ng-container *ngSwitchCase="'no-questions'">
       <h3 class="error">There were not enough questions with the following criteria:</h3>
@@ -51,10 +48,13 @@
       <h4>Difficulty -- {{ selectedDifficulty }}</h4>
       <h4>Question Type -- {{ selectedType }}</h4>
       <br />
-      <button type="button" class="button" (click)="returnHome($event)">Home</button>
+      <button type="button" class="button" (click)="onReturnHome($event)">Home</button>
     </ng-container>
     <ng-container *ngSwitchCase="'questions'">
-      <app-question *ngIf='questions.length > 0' [questions]="questions" (resetQuiz)="returnHome($event)"></app-question>
+      <app-question *ngIf='questions.length > 0' [questions]="questions" (viewResults)="onViewResults($event)"></app-question>
+    </ng-container>
+    <ng-container *ngSwitchCase="'results'">
+      <app-results [quizResults]="quizResults" (returnHome)="onReturnHome($event)"></app-results>
     </ng-container>
   </ng-container>
 </div>

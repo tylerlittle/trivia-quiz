@@ -5,6 +5,6 @@
     <div class="answer" *ngFor="let answer of answers" [ngClass]="{'correctAnswer': correctAnswer === answer, 'incorrectAnswer': incorrectAnswer === answer}" (click)="onAnswerClick($event)">{{ answer }}</div>
   </div>
 
-  <button [hidden]="!answerSubmitted" class="button" type="button" (click)="onNextBtnClick()">Next</button>
-  <button [hidden]="!homeBtnEnabled" class="button" type="button" (click)="onHomeBtnClick()">Home</button>
+  <button [hidden]="!answerSubmitted" class="custom-button" type="button" (click)="onNextBtnClick()">Next</button>
+  <button [hidden]="!viewResultsEnabled" class="custom-button" type="button" (click)="onViewResults()">View Quiz Results</button>
 </div>

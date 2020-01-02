@@ -26,22 +26,6 @@
   width: 95%;
 }
 
-.button {
-  height: 100px;
-  width: 300px;
-  font-size: 2.2em;
-  background-color: transparent;
-  color: white;
-  border-radius: 25px;
-  border-style: solid;
-  margin: 1em auto 1em auto;
-}
-
-.button:hover {
-  background-color: white;
-  color: teal;
-}
-
 .correctAnswer {
   background-color: green;
   color: white;

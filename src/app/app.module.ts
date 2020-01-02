@@ -7,13 +7,15 @@ import { TriviaQuizComponent } from './trivia-quiz/trivia-quiz.component';
 import { TriviaQuizService } from './trivia-quiz.service';
 import { CardComponent } from './card/card.component';
 import { QuestionComponent } from './question/question.component';
+import { ResultsComponent } from './results/results.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TriviaQuizComponent,
     CardComponent,
-    QuestionComponent
+    QuestionComponent,
+    ResultsComponent
   ],
   imports: [
     BrowserModule,

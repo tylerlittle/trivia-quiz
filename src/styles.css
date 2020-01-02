@@ -38,3 +38,19 @@ h4 {
   text-decoration: underline;
   text-transform: uppercase;
 }
+
+.custom-button {
+  height: 100px;
+  width: 300px;
+  font-size: 2.2em;
+  background-color: transparent;
+  color: white;
+  border-radius: 25px;
+  border-style: solid;
+  margin: 1em auto 1em auto;
+}
+
+.custom-button:hover {
+  background-color: white;
+  color: teal;
+}
