@@ -6,7 +6,7 @@
   <div class="question" [innerHTML]="currentQuestion">
   </div>
   <div class="answer-container">
-    <div class="answer" *ngFor="let answer of answers" [ngClass]="{'correctAnswer': correctAnswer === answer, 'incorrectAnswer': incorrectAnswer === answer}" (click)="onAnswerClick($event)">{{ answer }}</div>
+    <div class="answer" *ngFor="let answer of answers" [ngClass]="{'correctAnswer': correctAnswer === answer, 'incorrectAnswer': incorrectAnswer === answer, 'disabled': disableAnswers === true}" (click)="onAnswerClick($event)">{{ answer }}</div>
   </div>
 
   <button [hidden]="!answerSubmitted" class="custom-button" type="button" (click)="onNextBtnClick()">Next</button>

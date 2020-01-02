@@ -25,6 +25,7 @@ export class QuestionComponent implements OnInit {
   timeElapsed = 0;
   timeElapsedDisplay = '00:00';
   timerInterval: any;
+  disableAnswers = false;
   @Output() viewResults = new EventEmitter();
 
   constructor() { }
@@ -56,6 +57,7 @@ export class QuestionComponent implements OnInit {
   }
 
   onAnswerClick($event: any) {
+    this.disableAnswers = true;
     this.selectedAnswer = $event.srcElement.innerText;
     this.correctAnswer = this.questions[this.currentQuestionIndex].correct_answer;
     if (this.questions[this.currentQuestionIndex].correct_answer !== this.selectedAnswer) {
@@ -74,6 +76,7 @@ export class QuestionComponent implements OnInit {
   }
 
   onNextBtnClick() {
+    this.disableAnswers = false;
     this.currentQuestionIndex += 1;
     this.difficulty = this.questions[this.currentQuestionIndex].difficulty;
     this.currentQuestion = this.questions[this.currentQuestionIndex].question;
