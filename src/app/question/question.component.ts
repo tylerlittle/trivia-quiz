@@ -18,8 +18,12 @@ export class QuestionComponent implements OnInit {
   viewResultsEnabled = false;
   quizResults = {
     correct: 0,
-    incorrect: 0
+    incorrect: 0,
+    timeElapsedDisplay: '00:00'
   };
+  timeElapsed = 0;
+  timeElapsedDisplay = '00:00';
+  timerInterval: any;
   @Output() viewResults = new EventEmitter();
 
   constructor() { }
@@ -28,6 +32,18 @@ export class QuestionComponent implements OnInit {
     if (this.questions.length > 0) {
       this.currentQuestion = this.questions[0].question;
       this.answers = this.shuffleAnswers(this.getAnswers(this.questions[0]));
+      this.timerInterval = setInterval(() => {
+        this.timeElapsed += 1;
+        let minutes: any = Math.floor(this.timeElapsed / 60);
+        let seconds: any = this.timeElapsed - (60 * minutes);
+        if (minutes < 10) {
+          minutes = `0${minutes}`;
+        }
+        if (seconds < 10) {
+          seconds = `0${seconds}`;
+        }
+        this.timeElapsedDisplay = `${minutes}:${seconds}`;
+      }, 1000);
     }
   }
 
@@ -49,6 +65,8 @@ export class QuestionComponent implements OnInit {
     if (this.questions.length - 1 !== this.currentQuestionIndex) {
       this.answerSubmitted = true;
     } else {
+      clearInterval(this.timerInterval);
+      this.quizResults.timeElapsedDisplay = this.timeElapsedDisplay;
       this.viewResultsEnabled = true;
     }
   }
