@@ -17,6 +17,8 @@ export class TriviaQuizComponent implements OnInit {
   selectedType = '';
   typeList = ['Any', 'True/False', 'Multiple Choice'];
   quizResults: any;
+  stepTimeoutHandler: any;
+  stepIntervalHandler: any;
   constructor(private quizService: TriviaQuizService) { }
 
   ngOnInit() {
@@ -71,16 +73,35 @@ export class TriviaQuizComponent implements OnInit {
     this.view = 'categories';
   }
 
-  stepDown() {
+  stepDownMouseDown() {
     if (this.questionQuantity > 1) {
       this.questionQuantity -= 1;
+      this.stepTimeoutHandler = setTimeout(() => {
+        this.stepIntervalHandler = setInterval(() => {
+          if (this.questionQuantity > 1) {
+            this.questionQuantity -= 1;
+          }
+        }, 75);
+      }, 500);
     }
   }
 
-  stepUp() {
+  stepUpMouseDown() {
     if (this.questionQuantity < 50) {
       this.questionQuantity += 1;
+      this.stepTimeoutHandler = setTimeout(() => {
+        this.stepIntervalHandler = setInterval(() => {
+          if (this.questionQuantity < 50) {
+            this.questionQuantity += 1;
+          }
+        }, 75);
+      }, 500);
     }
+  }
+
+  clearStepHandlers() {
+    clearTimeout(this.stepTimeoutHandler);
+    clearInterval(this.stepIntervalHandler);
   }
 
   sortAlphabetically(array: any) {

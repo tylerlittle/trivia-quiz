@@ -12,9 +12,9 @@
     <ng-container *ngSwitchCase="'question-quantity'">
       <h2>Number of Questions</h2>
       <div class="number-input">
-        <button type="button" (click)="stepDown()"></button>
+        <button type="button" (mousedown)="stepDownMouseDown()" (mouseup)="clearStepHandlers()" (mouseleave)="clearStepHandlers()"></button>
         <input class="quantity" type="number" [(ngModel)]="questionQuantity" name="quantity" min="1" max="50">
-        <button class="plus" type="button" (click)="stepUp()"></button>
+        <button class="plus" type="button" (mousedown)="stepUpMouseDown()" (mouseup)="clearStepHandlers()" (mouseleave)="clearStepHandlers()"></button>
       </div>
 
       <button type="button" class="custom-button" (click)="setQuestionQuantity()">Next</button>
