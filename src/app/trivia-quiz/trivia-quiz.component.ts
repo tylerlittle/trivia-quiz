@@ -81,7 +81,7 @@ export class TriviaQuizComponent implements OnInit {
           if (this.questionQuantity > 1) {
             this.questionQuantity -= 1;
           }
-        }, 75);
+        }, 50);
       }, 500);
     }
   }
@@ -94,7 +94,7 @@ export class TriviaQuizComponent implements OnInit {
           if (this.questionQuantity < 50) {
             this.questionQuantity += 1;
           }
-        }, 75);
+        }, 50);
       }, 500);
     }
   }
