@@ -7,73 +7,89 @@ import { TriviaQuizService } from '../trivia-quiz.service';
   styleUrls: ['./trivia-quiz.component.css']
 })
 export class TriviaQuizComponent implements OnInit {
-  view = 'categories';
-  questionQuantity = 5;
+  // public properties
   categories: any = [];
-  selectedCategory = '';
-  questions = [];
-  selectedDifficulty = '';
   difficultyList = ['Any', 'Easy', 'Medium', 'Hard'];
+  questionQuantity = 5;
+  questions = [];
+  quizResults: any;
+  selectedCategory = '';
+  selectedDifficulty = '';
   selectedType = '';
   typeList = ['Any', 'True/False', 'Multiple Choice'];
-  quizResults: any;
-  stepTimeoutHandler: any;
-  stepIntervalHandler: any;
-  constructor(private quizService: TriviaQuizService) { }
+  view = 'categories';
+
+  // private fields
+  private stepIntervalHandler: any;
+  private stepTimeoutHandler: any;
+
+  constructor(private quizService: TriviaQuizService) {}
 
   ngOnInit() {
-    this.quizService.getTriviaCategories()
-    .subscribe((response: any) => { this.categories = response.trivia_categories;
-                                    this.sortAlphabetically(this.categories); });
+    this.getCategories();
   }
 
-  setSelectedCategory(categoryName: string) {
+  // public methods
+  clearStepHandlers(): void {
+    clearTimeout(this.stepTimeoutHandler);
+    clearInterval(this.stepIntervalHandler);
+  }
+
+  onBeginQuiz(): void {
+    const category = this.categories.filter(
+      (item: { name: string }) => item.name === this.selectedCategory
+    );
+    const categoryId = category[0].id;
+    this.quizService
+      .getQuestionsForCategory(
+        categoryId,
+        this.questionQuantity,
+        this.selectedDifficulty,
+        this.selectedType
+      )
+      .subscribe((response: any) => {
+        if (response.results.length === 0) {
+          this.view = 'no-questions';
+        } else {
+          this.view = 'questions';
+          this.questions = response.results;
+        }
+      });
+  }
+
+  onReturnHome(): void {
+    this.questions = [];
+    this.selectedCategory = '';
+    this.selectedDifficulty = '';
+    this.selectedType = '';
+    this.view = 'categories';
+  }
+
+  onViewResults(results: any): void {
+    this.quizResults = results;
+    this.view = 'results';
+  }
+
+  setQuestionQuantity(): void {
+    this.view = 'difficulty';
+  }
+
+  setSelectedCategory(categoryName: string): void {
     this.selectedCategory = categoryName;
     this.view = 'question-quantity';
   }
 
-  setQuestionQuantity() {
-    this.view = 'difficulty';
-  }
-
-  setSelectedDifficulty(difficultyLevel: string) {
+  setSelectedDifficulty(difficultyLevel: string): void {
     this.selectedDifficulty = difficultyLevel;
     this.view = 'type';
   }
 
-  setSelectedType(type: string) {
+  setSelectedType(type: string): void {
     this.selectedType = type;
     this.view = 'quiz-params';
   }
 
-  onBeginQuiz() {
-    const category = this.categories.filter(item => item.name === this.selectedCategory );
-    const categoryId = category[0].id;
-    this.quizService.getQuestionsForCategory(categoryId, this.questionQuantity, this.selectedDifficulty, this.selectedType)
-    .subscribe((response: any) => {
-      if (response.results.length === 0) {
-        this.view = 'no-questions';
-      } else {
-        this.view = 'questions';
-        this.questions = response.results;
-      }
-    });
-  }
-
-  onViewResults(results: any) {
-    this.view = 'results';
-    this.quizResults = results;
-  }
-
-  onReturnHome($event: any) {
-    this.selectedCategory = '';
-    this.selectedDifficulty = '';
-    this.selectedType = '';
-    this.questions = [];
-    this.view = 'categories';
-  }
-
-  stepDownMouseDown() {
+  stepDownMouseDown(): void {
     if (this.questionQuantity > 1) {
       this.questionQuantity -= 1;
       this.stepTimeoutHandler = setTimeout(() => {
@@ -86,7 +102,7 @@ export class TriviaQuizComponent implements OnInit {
     }
   }
 
-  stepUpMouseDown() {
+  stepUpMouseDown(): void {
     if (this.questionQuantity < 50) {
       this.questionQuantity += 1;
       this.stepTimeoutHandler = setTimeout(() => {
@@ -99,16 +115,19 @@ export class TriviaQuizComponent implements OnInit {
     }
   }
 
-  clearStepHandlers() {
-    clearTimeout(this.stepTimeoutHandler);
-    clearInterval(this.stepIntervalHandler);
+  // private methods
+  private getCategories(): void {
+    this.quizService.getTriviaCategories().subscribe((response: any) => {
+      this.categories = response.trivia_categories;
+      this.sortAlphabetically(this.categories);
+    });
   }
 
-  sortAlphabetically(array: any) {
+  private sortAlphabetically(array: any): any {
     array.sort((a: any, b: any) => {
       const former = a.name.toUpperCase();
       const latter = b.name.toUpperCase();
-      return (former < latter) ? -1 : (former > latter) ? 1 : 0;
+      return former < latter ? -1 : former > latter ? 1 : 0;
     });
   }
 }

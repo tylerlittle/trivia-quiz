@@ -3,6 +3,14 @@
   <h4>Time Elapsed: {{ quizResults.timeElapsedDisplay }}</h4>
   <h4># of Questions Correct: {{ quizResults.correct }}</h4>
   <h4># of Questions Incorrect: {{ quizResults.incorrect }}</h4>
-  <h4>Score: {{ quizResults.correct / (quizResults.correct + quizResults.incorrect) * 100 }}%</h4>
+  <h4>
+    Score:
+    {{
+      (quizResults.correct / (quizResults.correct + quizResults.incorrect)) *
+        100
+    }}%
+  </h4>
 </div>
-<button type="button" class="custom-button" (click)="onReturnHome()">Home</button>
+<button class="custom-button" type="button" (click)="onReturnHome()">
+  Home
+</button>

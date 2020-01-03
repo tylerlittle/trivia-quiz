@@ -1,15 +1,15 @@
 .card {
-  border-radius: 20px;
-  margin: 10px;
-  padding: 20px;
   border: 1px solid white;
-  min-width: 200px;
-  max-width: 200px;
+  border-radius: 20px;
   cursor: pointer;
-  text-align: center;
   font-size: 1.7em;
   height: 80%;
-  transition: all .25s ease-in-out;
+  margin: 10px;
+  max-width: 200px;
+  min-width: 200px;
+  padding: 20px;
+  text-align: center;
+  transition: all 0.25s ease-in-out;
 }
 
 .card:hover {

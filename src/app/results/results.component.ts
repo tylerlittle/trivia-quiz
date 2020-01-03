@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-results',
@@ -9,12 +9,11 @@ export class ResultsComponent implements OnInit {
   @Input() quizResults: any;
   @Output() returnHome = new EventEmitter();
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  onReturnHome() {
+  onReturnHome(): void {
     this.returnHome.emit();
   }
 }

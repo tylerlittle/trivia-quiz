@@ -1,8 +1,31 @@
-.container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.app-question-container {
+  margin: auto;
+  max-width: 90%;
+  min-width: 90%;
+}
+
+.error {
+  color: maroon;
+}
+
+.beginQuizBtnContainer {
+  margin-top: 30px;
+}
+
+.button {
+  background-color: transparent;
+  border-radius: 25px;
+  border-style: solid;
+  color: white;
+  font-size: 2.2rem;
+  height: 100px;
+  margin-top: 2rem;
+  width: 300px;
+}
+
+.button:hover {
+  background-color: white;
+  color: teal;
 }
 
 .categoryContainer {
@@ -12,35 +35,22 @@
   justify-content: center;
 }
 
-.beginQuizBtnContainer {
-  margin-top: 30px;
+.container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.button {
-  height: 100px;
-  width: 300px;
-  font-size: 2.2rem;
-  background-color: transparent;
-  color: white;
-  border-radius: 25px;
-  border-style: solid;
-  margin-top: 2rem;
-}
-
-.button:hover {
-  background-color: white;
-  color: teal;
-}
-
-/* quantity spinner */
-input[type="number"] {
+/* BEGIN -- Quantity question spinner styling */
+input[type='number'] {
   -webkit-appearance: textfield;
   -moz-appearance: textfield;
   appearance: textfield;
 }
 
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
   -webkit-appearance: none;
 }
 
@@ -50,50 +60,42 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .number-input button {
-  outline: none;
+  align-items: center;
   -webkit-appearance: none;
   background-color: transparent;
   border: none;
-  align-items: center;
-  justify-content: center;
-  width: 3rem;
-  height: 3rem;
   cursor: pointer;
+  height: 3rem;
+  justify-content: center;
   margin: 0;
+  outline: none;
   position: relative;
+  width: 3rem;
 }
 
 .number-input button:before,
 .number-input button:after {
-  display: inline-block;
-  position: absolute;
-  content: '';
-  width: 1rem;
-  height: 2px;
   background-color: #212121;
+  content: '';
+  display: inline-block;
+  height: 2px;
+  position: absolute;
   transform: translate(-50%, -50%);
+  width: 1rem;
 }
+
 .number-input button.plus:after {
   transform: translate(-50%, -50%) rotate(90deg);
 }
 
-.number-input input[type=number] {
-  max-width: 5rem;
-  padding: .5rem;
+.number-input input[type='number'] {
   border: solid #ddd;
   border-width: 0 2px;
+  font-weight: bold;
   font-size: 2rem;
   height: 3rem;
-  font-weight: bold;
+  max-width: 5rem;
+  padding: 0.5rem;
   text-align: center;
 }
-
-.error {
-  color: maroon;
-}
-
-.app-question-container {
-  max-width: 90%;
-  min-width: 90%;
-  margin: auto;
-}
+/* END -- Quantity question spinner styling */

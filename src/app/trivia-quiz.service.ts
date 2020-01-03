@@ -5,14 +5,14 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class TriviaQuizService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  getTriviaCategories() {
-    return this.http.get('https://opentdb.com/api_category.php');
-  }
-
-  getQuestionsForCategory(categoryId: number, amount: number, difficulty: string, type: string) {
+  getQuestionsForCategory(
+    amount: number,
+    categoryId: number,
+    difficulty: string,
+    type: string
+  ) {
     let url = `https://opentdb.com/api.php?amount=${amount}&category=${categoryId}`;
     if (type === 'True/False') {
       url = `${url}&type=boolean`;
@@ -23,5 +23,9 @@ export class TriviaQuizService {
       url = `${url}&difficulty=${difficulty.toLowerCase()}`;
     }
     return this.http.get(url);
+  }
+
+  getTriviaCategories() {
+    return this.http.get('https://opentdb.com/api_category.php');
   }
 }
