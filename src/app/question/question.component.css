@@ -1,7 +1,7 @@
 .answer {
   border: solid 1px white;
   border-radius: 1rem;
-  font-size: 2rem;
+  font-size: 1.7rem;
   margin: 0.5rem;
   padding: 0.5rem;
   width: 95%;
@@ -19,12 +19,6 @@
   color: white;
 }
 
-.difficulty {
-  display: inline-block;
-  text-align: right;
-  width: 50%;
-}
-
 .disabled {
   pointer-events: none;
 }
@@ -35,7 +29,7 @@
 }
 
 .question {
-  font-size: 3rem;
+  font-size: 2.5rem;
   padding: 1rem;
 }
 
@@ -47,20 +41,18 @@
   justify-content: center;
 }
 
-.timer {
-  display: inline-block;
-  width: 50%;
+.question-difficulty,
+.question-number {
+  font-size: 2.5rem;
+}
+
+.question-pre {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: auto 1rem;
 }
 
 @media only screen and (max-width: 600px) {
-  .difficulty {
-    display: block;
-    text-align: left;
-    width: 100%;
-  }
-
-  .timer {
-    display: block;
-    width: 100%;
-  }
 }

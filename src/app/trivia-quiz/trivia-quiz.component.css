@@ -28,7 +28,7 @@
   color: teal;
 }
 
-.categoryContainer {
+.card-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -52,6 +52,17 @@ input[type='number'] {
 input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
   -webkit-appearance: none;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.button-container button {
+  margin: 2rem;
 }
 
 .number-input {
@@ -99,3 +110,9 @@ input[type='number']::-webkit-outer-spin-button {
   text-align: center;
 }
 /* END -- Quantity question spinner styling */
+
+@media only screen and (max-width: 600px) {
+  .button-container {
+    flex-wrap: wrap-reverse;
+  }
+}

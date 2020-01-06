@@ -13,6 +13,7 @@ export class QuestionComponent implements OnInit {
   answerSubmitted = false;
   correctAnswer = '';
   currentQuestion = '';
+  currentQuestionIndex = 0;
   difficulty: string;
   disableAnswers = false;
   incorrectAnswer = '';
@@ -20,7 +21,6 @@ export class QuestionComponent implements OnInit {
   viewResultsEnabled = false;
 
   // private fields
-  private currentQuestionIndex = 0;
   private quizResults = {
     correct: 0,
     incorrect: 0,

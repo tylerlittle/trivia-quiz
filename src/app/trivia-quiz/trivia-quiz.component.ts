@@ -35,6 +35,18 @@ export class TriviaQuizComponent implements OnInit {
     clearInterval(this.stepIntervalHandler);
   }
 
+  goToDifficulty() {
+    this.view = 'difficulty';
+  }
+
+  goToQuestionQty() {
+    this.view = 'question-quantity';
+  }
+
+  goToType() {
+    this.view = 'type';
+  }
+
   onBeginQuiz(): void {
     const category = this.categories.filter(
       (item: { name: string }) => item.name === this.selectedCategory
@@ -42,8 +54,8 @@ export class TriviaQuizComponent implements OnInit {
     const categoryId = category[0].id;
     this.quizService
       .getQuestionsForCategory(
-        categoryId,
         this.questionQuantity,
+        categoryId,
         this.selectedDifficulty,
         this.selectedType
       )

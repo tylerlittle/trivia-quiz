@@ -2,8 +2,8 @@
   <h1 class="heading">Trivia Quiz</h1>
   <ng-container [ngSwitch]="view">
     <ng-container *ngSwitchCase="'categories'">
-      <h2>Choose a category</h2>
-      <div class="categoryContainer">
+      <h2>Choose a Category</h2>
+      <div class="card-container">
         <div *ngFor="let category of categories">
           <app-card
             [name]="category.name"
@@ -38,18 +38,22 @@
           (mouseup)="clearStepHandlers()"
         ></button>
       </div>
-
-      <button
-        class="custom-button"
-        type="button"
-        (click)="setQuestionQuantity()"
-      >
-        Next
-      </button>
+      <div class="button-container">
+        <button class="custom-button" type="button" (click)="onReturnHome()">
+          Previous
+        </button>
+        <button
+          class="custom-button"
+          type="button"
+          (click)="setQuestionQuantity()"
+        >
+          Next
+        </button>
+      </div>
     </ng-container>
     <ng-container *ngSwitchCase="'difficulty'">
       <h2>Choose a difficulty</h2>
-      <div class="categoryContainer">
+      <div class="card-container">
         <div *ngFor="let difficulty of difficultyList">
           <app-card
             [name]="difficulty"
@@ -58,10 +62,15 @@
           ></app-card>
         </div>
       </div>
+      <div class="button-container">
+        <button class="custom-button" type="button" (click)="goToQuestionQty()">
+          Previous
+        </button>
+      </div>
     </ng-container>
     <ng-container *ngSwitchCase="'type'">
       <h2>Choose a question type</h2>
-      <div class="categoryContainer">
+      <div class="card-container">
         <div *ngFor="let type of typeList">
           <app-card
             [name]="type"
@@ -70,17 +79,27 @@
           ></app-card>
         </div>
       </div>
+      <div class="button-container">
+        <button class="custom-button" type="button" (click)="goToDifficulty()">
+          Previous
+        </button>
+      </div>
     </ng-container>
     <ng-container *ngSwitchCase="'quiz-params'">
-      <h3>Category -- {{ selectedCategory }}</h3>
-      <h3>Difficulty -- {{ selectedDifficulty }}</h3>
-      <h3>Question Type -- {{ selectedType }}</h3>
+      <h4>Category -- {{ selectedCategory }}</h4>
+      <h4>Difficulty -- {{ selectedDifficulty }}</h4>
+      <h4>Question Type -- {{ selectedType }}</h4>
       <button class="custom-button" type="button" (click)="onBeginQuiz()">
         Begin Quiz
       </button>
-      <button class="custom-button" type="button" (click)="onReturnHome()">
-        Home
-      </button>
+      <div class="button-container">
+        <button class="custom-button" type="button" (click)="goToType()">
+          Previous
+        </button>
+        <button class="custom-button" type="button" (click)="onReturnHome()">
+          Home
+        </button>
+      </div>
     </ng-container>
     <ng-container *ngSwitchCase="'no-questions'">
       <h3 class="error">
