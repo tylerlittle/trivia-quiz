@@ -78,6 +78,7 @@ export class TriviaQuizComponent implements OnInit {
   }
 
   onViewResults(results: any): void {
+    results.category = this.selectedCategory;
     this.quizResults = results;
     this.view = 'results';
   }
@@ -130,8 +131,10 @@ export class TriviaQuizComponent implements OnInit {
   // private methods
   private getCategories(): void {
     this.quizService.getTriviaCategories().subscribe((response: any) => {
-      this.categories = response.trivia_categories;
-      this.sortAlphabetically(this.categories);
+      const unsortedCategories = response.trivia_categories;
+      unsortedCategories.push({ id: -1, name: 'Random' });
+      this.sortAlphabetically(unsortedCategories);
+      this.categories = unsortedCategories;
     });
   }
 

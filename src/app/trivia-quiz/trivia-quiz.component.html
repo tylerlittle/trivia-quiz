@@ -86,9 +86,9 @@
       </div>
     </ng-container>
     <ng-container *ngSwitchCase="'quiz-params'">
-      <h4>Category -- {{ selectedCategory }}</h4>
-      <h4>Difficulty -- {{ selectedDifficulty }}</h4>
-      <h4>Question Type -- {{ selectedType }}</h4>
+      <h4>Category - {{ selectedCategory }}</h4>
+      <h4>Difficulty - {{ selectedDifficulty }}</h4>
+      <h4>Question Type - {{ selectedType }}</h4>
       <button class="custom-button" type="button" (click)="onBeginQuiz()">
         Begin Quiz
       </button>
@@ -105,9 +105,9 @@
       <h3 class="error">
         There were not enough questions with the following criteria:
       </h3>
-      <h4>Category -- {{ selectedCategory }}</h4>
-      <h4>Difficulty -- {{ selectedDifficulty }}</h4>
-      <h4>Question Type -- {{ selectedType }}</h4>
+      <h4>Category - {{ selectedCategory }}</h4>
+      <h4>Difficulty - {{ selectedDifficulty }}</h4>
+      <h4>Question Type - {{ selectedType }}</h4>
       <br />
       <button class="custom-button" type="button" (click)="onReturnHome()">
         Home
@@ -116,6 +116,7 @@
     <ng-container *ngSwitchCase="'questions'">
       <app-question
         *ngIf="questions.length > 0"
+        [category]="selectedCategory"
         [questions]="questions"
         class="app-question-container"
         (viewResults)="onViewResults($event)"

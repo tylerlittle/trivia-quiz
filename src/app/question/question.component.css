@@ -41,8 +41,7 @@
   justify-content: center;
 }
 
-.question-difficulty,
-.question-number {
+.question-pre div {
   font-size: 2.5rem;
 }
 
@@ -52,7 +51,4 @@
   flex-wrap: wrap;
   justify-content: space-between;
   margin: auto 1rem;
-}
-
-@media only screen and (max-width: 600px) {
 }

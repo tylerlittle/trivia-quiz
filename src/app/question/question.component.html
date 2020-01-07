@@ -3,27 +3,23 @@
 </div>
 <div class="question-container">
   <div class="question-pre">
-    <div class="question-number">
-      Question {{ currentQuestionIndex + 1 }} of {{ questions.length }}
-    </div>
-    <div class="question-difficulty">
-      Difficulty: {{ difficulty | titlecase }}
-    </div>
+    <div>Question {{ currentQuestionIndex + 1 }} of {{ questions.length }}</div>
+    <div>Category: {{ category | titlecase }}</div>
+    <div>Difficulty: {{ difficulty | titlecase }}</div>
   </div>
   <div class="question" [innerHTML]="currentQuestion"></div>
   <div class="answer-container">
     <div
       class="answer"
       *ngFor="let answer of answers"
+      [innerHTML]="answer"
       [ngClass]="{
         correctAnswer: correctAnswer === answer,
         incorrectAnswer: incorrectAnswer === answer,
         disabled: disableAnswers === true
       }"
       (click)="onAnswerClick($event)"
-    >
-      {{ answer }}
-    </div>
+    ></div>
   </div>
 
   <button

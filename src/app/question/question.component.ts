@@ -7,6 +7,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class QuestionComponent implements OnInit {
   // public properties
+  @Input() category: string;
   @Input() questions = [];
   @Output() viewResults = new EventEmitter();
   answers = [];

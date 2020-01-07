@@ -13,7 +13,10 @@ export class TriviaQuizService {
     difficulty: string,
     type: string
   ) {
-    let url = `https://opentdb.com/api.php?amount=${amount}&category=${categoryId}`;
+    let url = `https://opentdb.com/api.php?amount=${amount}`;
+    if (categoryId !== -1) {
+      url = `${url}&category=${categoryId}`;
+    }
     if (type === 'True/False') {
       url = `${url}&type=boolean`;
     } else if (type === 'Multiple') {
